@@ -17,6 +17,7 @@ so that it can be accessed more easily from AWS-Glue jobs
 Latest jar can be found at:
 jars/scala-udf-similarity-0.1.1_spark3.x.jar
 
+**NOTE:** This fork contains minimal updates needed to build the jar for scala 2.13 version (dependencies, tests, dependencies and readme update - namely parts with instructions about scala and maven installation).
 
 
 ---
@@ -109,75 +110,34 @@ If you dont have one ,installing either OpenJDK or [AWS Correto JDK](https://aws
 ---
 
 
-###  Scala? How can I install this on my macbook?
+###  Scala? How can I install this on my macbook? 
 
+#### Install coursier 
+An easy way, currently suggested by https://www.scala-lang.org/download/ is via coursier (https://get-coursier.io/). 
+To install coursier you can use brew:
 
-#### Install sdkman
-
-
-
-An easy way to install `Scala` on your macbook is to use `sdkman`
-
-- open a new terminal and run 
-
-`curl -s "https://get.sdkman.io" | bash`
-
-and follow the instructions on screen
-
-- close the terminal. Open a new one and run 
-
-`source "$HOME/.sdkman/bin/sdkman-init.sh"`
-    
-- run `sdk version` on the terminal in order to check your installation of sdkman was successful
-
-
-if you use zsh ensure that these lines are the last lines of your .zshrc file. 
-
-
-
-```shell
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/MYUSERNAME/.sdkman"
-[[ -s "/Users/MYUSERNAME/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/MYUSERNAME/.sdkman/bin/sdkman-init.sh" 
-
+```bash
+brew install coursier/formulas/coursier
+```
+as suggested after installation finishes, add following your `.zshrc` (your path may differ, check last lines of the output from previous command). 
+```bash
+export PATH="$PATH:/Users/YOUR_USER/Library/Application Support/Coursier/bin"
 ```
 
-
-where `MYUSERNAME` is your mac username.If they are not make them so!
-
-
-
-
-#### Install Scala via sdkman
-
-
-
-It is important to install a version of Scala that is in the 2.11 to 2.12 range as these are the ones compatible with Spark 2.4.5
-
-
-Now that you have `sdkman` installed run 
-
-`sdk install scala 2.12.10`
-
-
-
-
-voila. you have Scala now on your machine.
-
-
-Run `scala -version` and `scalac -version` to check
-
-
----
-
+#### Install Scala via coursier
+```bash
+cs install scala:2.13.13 && cs install scalac:2.13.13
+```
+Validate install by calling `scala -version` and `scalac -version`.
 
 ###  Maven? How can I install this on my macbook?
 
+Install via brew using 
+```bash
+brew install maven
+```
 
-
-Manual way:
-
-
+Or the manual way:
 
 * To install Maven on Mac OS X operating system, download the latest version from the Apache Maven site, select the Maven binary tar.gz file, for example: apache-maven-3.3.9-bin.tar.gz to to Downloads/ 
 
@@ -193,17 +153,6 @@ Manual way:
 * To install Maven on a Debian based Linux distribution (such as Ubuntu) there is an easier way: `sudo apt-get install maven`
  
 * Test that everything has been installed fine by running `java -version` and `mvn -version`  on your bash prompt
-
-
-
-sdkman way:
-
-
-
-`sdk install maven`
-
-
-lol. sdkman is quite useful isnt it?
 
 ---
 
